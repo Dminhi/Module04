@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Điền Thông Tin</title>
+    <link rel="stylesheet" href="/Users/dminhi/Desktop/demo/src/main/resources/style.css">
+    <style>
+        .container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="file"],
+        input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Fix padding issue */
+        }
+
+        input[type="file"] {
+            cursor: pointer; /* Change cursor to pointer on hover */
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff; /* Bootstrap primary color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker shade of primary color */
+        }
+
+        #preview {
+            margin-top: 10px;
+            display: none; /* Initially hide the image preview */
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit User</h2>
+    <form action="/user/update" method="post" th:object="${user}" enctype="multipart/form-data">
+        <table>
+            <tr class="form-group" >
+                <input readonly th:field="*{userId}" type="text" required>
+            </tr>
+            <tr class="form-group" >
+                <label >Họ và Tên:</label>
+                <input th:field="*{userName}" type="text" required>
+            </tr>
+            <tr class="form-group">
+                <div class="form-group">
+                    <label >Email:</label>
+                    <input type="email" th:field="*{email}" required>
+                </div>
+            </tr>
+            <tr class="form-group">
+                <label >Giới tính:</label><br>
+                <label for="male">Nam</label>
+                <input type="radio" id="male" name="gender" value="true">
+                <label for="female">Nữ</label>
+                <input type="radio" id="female" name="gender" value="false">
+            </tr>
+            <tr class="form-group">
+                <label >Birth of Date:</label>
+                <input th:field="*{dob}" type="date">
+            </tr>
+            <tr class="form-group">
+                <label>Profile Picture:</label>
+                <img  th:src="${user.img}" alt="" width="100" height="100" style="object-fit: cover">
+                <input id="product_image" type="file"  name="file" value="img">
+            </tr>
+            <tr>
+                <input type="submit" value="Gửi">
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
+
+    const  inputImage = document.getElementById("product_image");
+    const  imagePreview = document.getElementById("preview");
+    inputImage.addEventListener("change",function (e){
+        if (e.target.files.length) {
+            const src = URL.createObjectURL(e.target.files[0])
+            imagePreview.src = src;
+        }
+    })
+</script>
+</body>
+</html>
