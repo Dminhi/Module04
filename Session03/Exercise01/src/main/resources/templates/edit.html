@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add</title>
+  <link rel="stylesheet" href="/css/blog.css">
+</head>
+<body>
+<section id="new-blog">
+  <h2>Viết bài mới</h2>
+  <form action="/update" method="post" th:object="${blog}">
+    <table border="1" cellspacing="10" cellpadding="10">
+      <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tiêu đề</th>
+        <th>Nội dung:</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <label >Tiêu đề:</label>
+            <input th:field="*{blogName}" type="text">
+          </td>
+          <td>
+            <label >Nội dung:</label>
+            <textarea th:field="*{blogContent}"></textarea>
+          </td>
+          <td>
+            <button type="submit">Sửa bài</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</section>
+</body>
+</html>

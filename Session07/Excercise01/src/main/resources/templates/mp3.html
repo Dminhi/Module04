@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Music Player</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1>Danh sach song</h1>
+<a href="/mp3/add"> Them moi song</a>
+<table border="10" cellpadding="10" cellspacing="10">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Song Name</th>
+        <th>File</th>
+        <th>Category</th>
+        <th>Singer</th>
+        <th colspan="2">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s,loop:${song}">
+        <td th:text="${loop.count}"></td>
+        <td th:text="*{s.songName}"></td>
+        <td>
+            <audio controls>
+                <source th:src="${s.linkFile}">
+            </audio>
+        </td>
+        <td th:text="*{s.category}"></td>
+        <td th:text="*{s.singer}"></td>
+        <td><a th:href="|/mp3/edit/${s.id}|">Edit</a></td>
+        <td><a th:href="|/mp3/delete/${s.id}|">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Your custom JavaScript -->
+<script src="scripts.js"></script>
+</body>
+</html>
