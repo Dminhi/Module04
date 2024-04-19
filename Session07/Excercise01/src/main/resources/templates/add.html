@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add</title>
+</head>
+<body>
+<h1>Add Song</h1>
+<form action="/mp3/add" method="post" th:object="${mp3}" enctype="multipart/form-data">
+  <table border="1" cellspacing="5" cellpadding="10">
+    <tr>
+      <th><label >Song Name</label></th>
+      <td><input type="text" th:field="*{songName}">
+        <span th:errors="*{songName}"></span></p></td>
+    </tr>
+    <tr>
+      <th><label >Singer</label></th>
+      <td><input type="text" th:field="*{singer}" required min="0"></td>
+    </tr>
+    <tr>
+      <th><label >Song file</label></th>
+      <td><input type="file" name="file">
+        </td>
+    </tr>
+    <tr>
+      <th><label >Category</label></th>
+      <td><input type="text" th:field="*{category}" required min="0" ></td>
+    </tr>
+    <tr>
+      <td colspan="2"><input type="submit" value="Add"></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

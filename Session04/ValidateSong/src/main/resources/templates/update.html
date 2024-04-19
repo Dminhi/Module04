@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nhập Thông Tin Bài Hát</title>
+    <style>
+        /* Định dạng tổng thể cho form */
+        form {
+            width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        /* Định dạng các trường input */
+        input[type="text"],
+        select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Định dạng cho nút submit */
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Thêm hiệu ứng hover cho nút submit */
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Định dạng cho tiêu đề */
+        h1 {
+            text-align: center;
+        }
+
+        /* Định dạng cho label */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Nhập Thông Tin Bài Hát</h1>
+<form action="/update" method="post" th:object="${songRequest}">
+    <div>
+        <input readonly type="text" name="id" th:value="${songRequest.id}">
+    </div>
+    <div>
+        <label >Tên Bài Hát:</label>
+        <input type="text" th:field="*{songName}"  placeholder="Nhập tên bài hát">
+        <p th:if="${#fields.hasErrors('songName')}" th:errors="*{songName}" style="color: red;"></p>
+    </div>
+    <div>
+        <label >Ca Sĩ:</label>
+        <input type="text" th:field="*{singer}"  placeholder="Nhập tên ca sĩ">
+        <p th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" style="color: red;"></p>
+    </div>
+    <div>
+        <label>Thể Loại:</label>
+        <input type="text" th:field="*{category}" placeholder="Nhập tên ca sĩ">
+        <p th:if="${#fields.hasErrors('category')}" th:errors="*{category}" style="color: red;"></p>
+
+    </div>
+    <button type="submit">Gửi</button>
+</form>
+</body>
+</html>

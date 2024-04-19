@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        /* Định dạng tổng thể cho form */
+        form {
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+
+        /* Định dạng các trường input */
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"] {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Định dạng cho nút submit */
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Thêm hiệu ứng hover cho nút submit */
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        /* Định dạng cho tiêu đề */
+        h1 {
+            text-align: center;
+        }
+
+        /* Định dạng cho label */
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    </style>
+    <title>Nhập Dữ Liệu User</title>
+</head>
+<body>
+<h1>Nhập Dữ Liệu User</h1>
+<form action="/add" method="post" th:object="${userRequest}">
+    <div >
+        <label>Fist Name:</label>
+        <input type="text" th:field="*{firstName}" placeholder="Nhập họ">
+        <span style="color: red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">
+        </span>
+        <p th:text="${#fields.hasErrors('firstName')}"></p>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" th:field="*{lastName}" placeholder="Nhập tên">
+        <span style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">
+        </span>
+    </div>
+    <div>
+        <label>Tuổi:</label>
+        <input type="number" th:field="*{age}" placeholder="Nhập tuổi">
+        <span style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">
+        </span>
+    </div>
+    <div>
+        <label>Số điện thoại:</label>
+        <input type="tel" th:field="*{phoneNumber}" placeholder="Nhập số điện thoại">
+        <span style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">
+        </span>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" placeholder="Nhập địa chỉ email">
+        <span style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+        </span>
+    </div>
+    <button type="submit">Gửi</button>
+</form>
+</body>
+</html>

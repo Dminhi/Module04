@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* Định dạng tổng thể cho bảng */
+        table {
+            width: 100%; /* Đặt bảng rộng bằng 100% */
+            border-collapse: collapse; /* Gộp biên của các ô */
+            margin-top: 20px;
+        }
+
+        /* Định dạng cho tiêu đề của bảng */
+        th {
+            background-color: #4CAF50; /* Màu nền cho tiêu đề */
+            color: white; /* Màu chữ cho tiêu đề */
+            padding: 10px;
+            border: 1px solid #ddd; /* Biên của ô */
+            text-align: left;
+        }
+
+        /* Định dạng cho các ô dữ liệu */
+        td {
+            padding: 10px; /* Khoảng trống trong ô */
+            border: 1px solid #ddd; /* Biên của ô */
+        }
+
+        /* Định dạng cho hàng của bảng */
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* Màu nền cho các hàng chẵn */
+        }
+
+        /* Định dạng cho hàng khi di chuột qua */
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        /* Định dạng cho liên kết hành động */
+        a {
+            text-decoration: none; /* Bỏ gạch chân */
+            color: #4CAF50; /* Màu của liên kết */
+        }
+    </style>
+</head>
+<body>
+<a href="/add">Add</a>
+  <table>
+    <thead>
+        <tr>
+            <th>Stt</th>
+            <th>Song Name</th>
+            <th>Singer</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="s,loop: ${song}">
+            <td th:text="${loop.count}"></td>
+            <td th:text="${s.songName}"></td>
+            <td th:text="${s.singer}"></td>
+            <td th:text="${s.category}"></td>
+            <td><a th:href="@{'/update/'+${s.id}}">Edit</a></td>
+        </tr>
+    </tbody>
+  </table>
+</body>
+</html>
